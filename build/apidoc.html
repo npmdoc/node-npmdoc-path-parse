@@ -1,0 +1,354 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/jbgutierrez/path-parse#readme"
+
+    >path-parse (v1.0.5)</a>
+</h1>
+<h4>Node.js path.parse() ponyfill</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.path-parse">module path-parse</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.path-parse.path-parse">
+            function <span class="apidocSignatureSpan"></span>path-parse
+            <span class="apidocSignatureSpan">(pathString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.path-parse.posix">
+            function <span class="apidocSignatureSpan">path-parse.</span>posix
+            <span class="apidocSignatureSpan">(pathString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.path-parse.win32">
+            function <span class="apidocSignatureSpan">path-parse.</span>win32
+            <span class="apidocSignatureSpan">(pathString)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.path-parse.posix">module path-parse.posix</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.path-parse.posix.posix">
+            function <span class="apidocSignatureSpan">path-parse.</span>posix
+            <span class="apidocSignatureSpan">(pathString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.path-parse.posix.win32">
+            function <span class="apidocSignatureSpan">path-parse.posix.</span>win32
+            <span class="apidocSignatureSpan">(pathString)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.path-parse" id="apidoc.module.path-parse">module path-parse</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.path-parse.path-parse" id="apidoc.element.path-parse.path-parse">
+        function <span class="apidocSignatureSpan"></span>path-parse
+        <span class="apidocSignatureSpan">(pathString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">path-parse = function (pathString) {
+  if (typeof pathString !== &#x27;string&#x27;) {
+    throw new TypeError(
+        &#x22;Parameter &#x27;pathString&#x27; must be a string, not &#x22; + typeof pathString
+    );
+  }
+  var allParts = posixSplitPath(pathString);
+  if (!allParts || allParts.length !== 4) {
+    throw new TypeError(&#x22;Invalid path &#x27;&#x22; + pathString + &#x22;&#x27;&#x22;);
+  }
+  allParts[1] = allParts[1] || &#x27;&#x27;;
+  allParts[2] = allParts[2] || &#x27;&#x27;;
+  allParts[3] = allParts[3] || &#x27;&#x27;;
+
+  return {
+    root: allParts[0],
+    dir: allParts[0] + allParts[1].slice(0, -1),
+    base: allParts[2],
+    ext: allParts[3],
+    name: allParts[2].slice(0, allParts[2].length - allParts[3].length)
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.path-parse.posix" id="apidoc.element.path-parse.posix">
+        function <span class="apidocSignatureSpan">path-parse.</span>posix
+        <span class="apidocSignatureSpan">(pathString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">posix = function (pathString) {
+  if (typeof pathString !== &#x27;string&#x27;) {
+    throw new TypeError(
+        &#x22;Parameter &#x27;pathString&#x27; must be a string, not &#x22; + typeof pathString
+    );
+  }
+  var allParts = posixSplitPath(pathString);
+  if (!allParts || allParts.length !== 4) {
+    throw new TypeError(&#x22;Invalid path &#x27;&#x22; + pathString + &#x22;&#x27;&#x22;);
+  }
+  allParts[1] = allParts[1] || &#x27;&#x27;;
+  allParts[2] = allParts[2] || &#x27;&#x27;;
+  allParts[3] = allParts[3] || &#x27;&#x27;;
+
+  return {
+    root: allParts[0],
+    dir: allParts[0] + allParts[1].slice(0, -1),
+    base: allParts[2],
+    ext: allParts[3],
+    name: allParts[2].slice(0, allParts[2].length - allParts[3].length)
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## API
+
+See [`path.parse(pathString)`](https://nodejs.org/api/path.html#path_path_parse_pathstring) docs.
+
+### pathParse(path)
+
+### pathParse.<span class="apidocCodeKeywordSpan">posix</span>(path)
+
+The Posix specific version.
+
+### pathParse.win32(path)
+
+The Windows specific version.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.path-parse.win32" id="apidoc.element.path-parse.win32">
+        function <span class="apidocSignatureSpan">path-parse.</span>win32
+        <span class="apidocSignatureSpan">(pathString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">win32 = function (pathString) {
+  if (typeof pathString !== &#x27;string&#x27;) {
+    throw new TypeError(
+        &#x22;Parameter &#x27;pathString&#x27; must be a string, not &#x22; + typeof pathString
+    );
+  }
+  var allParts = win32SplitPath(pathString);
+  if (!allParts || allParts.length !== 4) {
+    throw new TypeError(&#x22;Invalid path &#x27;&#x22; + pathString + &#x22;&#x27;&#x22;);
+  }
+  return {
+    root: allParts[0],
+    dir: allParts[0] + allParts[1].slice(0, -1),
+    base: allParts[2],
+    ext: allParts[3],
+    name: allParts[2].slice(0, allParts[2].length - allParts[3].length)
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### pathParse(path)
+
+### pathParse.posix(path)
+
+The Posix specific version.
+
+### pathParse.<span class="apidocCodeKeywordSpan">win32</span>(path)
+
+The Windows specific version.
+
+## License
+
+MIT © [Javier Blanco](http://jbgutierrez.info)
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.path-parse.posix" id="apidoc.module.path-parse.posix">module path-parse.posix</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.path-parse.posix.posix" id="apidoc.element.path-parse.posix.posix">
+        function <span class="apidocSignatureSpan">path-parse.</span>posix
+        <span class="apidocSignatureSpan">(pathString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">posix = function (pathString) {
+  if (typeof pathString !== &#x27;string&#x27;) {
+    throw new TypeError(
+        &#x22;Parameter &#x27;pathString&#x27; must be a string, not &#x22; + typeof pathString
+    );
+  }
+  var allParts = posixSplitPath(pathString);
+  if (!allParts || allParts.length !== 4) {
+    throw new TypeError(&#x22;Invalid path &#x27;&#x22; + pathString + &#x22;&#x27;&#x22;);
+  }
+  allParts[1] = allParts[1] || &#x27;&#x27;;
+  allParts[2] = allParts[2] || &#x27;&#x27;;
+  allParts[3] = allParts[3] || &#x27;&#x27;;
+
+  return {
+    root: allParts[0],
+    dir: allParts[0] + allParts[1].slice(0, -1),
+    base: allParts[2],
+    ext: allParts[3],
+    name: allParts[2].slice(0, allParts[2].length - allParts[3].length)
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## API
+
+See [`path.parse(pathString)`](https://nodejs.org/api/path.html#path_path_parse_pathstring) docs.
+
+### pathParse(path)
+
+### pathParse.<span class="apidocCodeKeywordSpan">posix</span>(path)
+
+The Posix specific version.
+
+### pathParse.win32(path)
+
+The Windows specific version.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.path-parse.posix.win32" id="apidoc.element.path-parse.posix.win32">
+        function <span class="apidocSignatureSpan">path-parse.posix.</span>win32
+        <span class="apidocSignatureSpan">(pathString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">win32 = function (pathString) {
+  if (typeof pathString !== &#x27;string&#x27;) {
+    throw new TypeError(
+        &#x22;Parameter &#x27;pathString&#x27; must be a string, not &#x22; + typeof pathString
+    );
+  }
+  var allParts = win32SplitPath(pathString);
+  if (!allParts || allParts.length !== 4) {
+    throw new TypeError(&#x22;Invalid path &#x27;&#x22; + pathString + &#x22;&#x27;&#x22;);
+  }
+  return {
+    root: allParts[0],
+    dir: allParts[0] + allParts[1].slice(0, -1),
+    base: allParts[2],
+    ext: allParts[3],
+    name: allParts[2].slice(0, allParts[2].length - allParts[3].length)
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### pathParse(path)
+
+### pathParse.posix(path)
+
+The Posix specific version.
+
+### pathParse.<span class="apidocCodeKeywordSpan">win32</span>(path)
+
+The Windows specific version.
+
+## License
+
+MIT © [Javier Blanco](http://jbgutierrez.info)
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
